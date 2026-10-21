@@ -11,6 +11,14 @@ def verificar_bissexto(data1):
         meses[1] = 28
         return meses[1], bissexto
 
+def diferenca_data(data1, data2, meses):
+    while (data1[1]<data2[1]) or (data1[2]<data2[2]):
+        if meses[(data2[1]-1)] > data1[0]:
+            dias = meses[(data2[1])] - data1[0]
+            data[0] += dias
+    dias = data2[0] - data1[0]
+    return dias
+
 def soma_dias(data1, dias, meses):
     verificar_bissexto(data1)
     while dias + data1[0] > meses[((data1[1])-1)]:
@@ -34,7 +42,9 @@ while True:
         operacao = int(input('(1) Calcular quantos dias há entre duas datas\n(2) Somar uma quantidade de dias a uma data\n(3) Sair\n>'))
     if operacao == 1:
         data1 = int(input('Escreva a primeira data (DD/MM/AAAA): ').strip().split('/'))
+        data1 = [int(item) for item in data1]
         data2 = int(input('Escreva a segunda data (DD/MM/AAAA): ').strip().split('/'))
+        data2 = [int(item) for item in data2]
         #diferenca = data2 - data1
         print(f'{data1} + {data2} = diferenca')
     elif operacao == 2:
