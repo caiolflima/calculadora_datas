@@ -1,28 +1,29 @@
 meses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-ano = 0
 bissexto = False
 
-def verificar_bissexto():
-    if (ano%4==0) and (ano%100!=0):
+def verificar_bissexto(data1):
+    if ((data1[2]%4==0) and not (data1[2]%100==0)) or (data1[2]%400==0):
         bissexto = True
         meses[1] = 29
-        return meses[1]
+        return meses[1], bissexto
     else:
         bissexto = False
         meses[1] = 28
-        return meses[1]
+        return meses[1], bissexto
 
 def soma_dias(data1, dias, meses):
+    verificar_bissexto(data1)
     while dias + data1[0] > meses[((data1[1])-1)]:
         dias_sobrando = meses[((data1[1])-1)] - data1[0]
         dias -= dias_sobrando
-        data1[0] = 1
+        data1[0] = 0
         data1[1] += 1
         if data1[1] > 12:
             data1[1] = 1
             data1[2] += 1
-    data1[0] += dias
-    return data1
+            verificar_bissexto(data1)
+    data1[0] += dias 
+    return data1, bissexto
 
 while True:
     print('-='*31)
@@ -41,7 +42,7 @@ while True:
         data1 = [int(item) for item in data1]
         dias = int(input('Quantidade de dias a somar: '))
         print(f'{data1[0]}/{data1[1]}/{data1[2]} + {dias} = ',end='') 
-        data1 = soma_dias(data1, dias, meses)
+        data1, bissexto = soma_dias(data1, dias, meses)
         print(f'{data1[0]}/{data1[1]}/{data1[2]}')
     elif operacao == 3:
         print('Sair')
