@@ -20,7 +20,8 @@ Soma a quantidade de dias informada à data\n
 Coleta a data desejada\n
 -def validar_data(data):
 Verifica se a data está no formato DD/MM/AAAA e se a quantidade de dias e meses está coerente com o calendário.\n
-
+def dia_semana(data1):\n
+Retorna o dia da semana da data no resultado de soma.
 '''
 meses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 meses_nome = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
@@ -140,7 +141,6 @@ def dia_semana(data1):
         nome_dia = dias_semana[indice]
     return nome_dia
 
-    
 while True:
     print('-='*31)
     print(f'{'Calculadora de Datas':^61}')
