@@ -66,10 +66,10 @@ def validar_data(data):
     while data[1] > 12:
         print(f'Erro: Mês inexistente.')
         data = inserir_data()
-
-    while data[0] > meses[(data[1])-1]:
-        print(f'Erro: Data inválida. {meses_nome[(data[1])-1]} tem {meses[(data[1])-1]} dias')
-        data = inserir_data()
+    if data[1] <= 12:
+        while data[0] > meses[(data[1])-1]:
+            print(f'Erro: Data inválida. {meses_nome[(data[1])-1]} tem {meses[(data[1])-1]} dias')
+            data = inserir_data()
 
     data = [str(item) for item in data]
     while len(data[2]) < 4:
