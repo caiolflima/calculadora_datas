@@ -1,20 +1,30 @@
 '''
-Projeto 6 - Nível Médio
-Calculadora de Datas
+Projeto 6 - Nível Médio\n
+Calculadora de Datas\n
 
-autor: Caio Lima
-formato: arquivo python
+autor: Caio Lima\n
+formato: arquivo python\n
 
-link: https://github.com/caiolflima/calculadora_datas
+link: https://github.com/caiolflima/calculadora_datas\n
 
-Funções criadas:
--def verificar_bissexto(data1):
+Funções criadas:\n
+-def verificar_bissexto(data1): - 
+Verifica se o ano informado é bissexto e altera a quantidade de dias de Fevereiro\n
+-def segunda_data_post(data1,data2): -
+Verifica se a segunda data é posterior à primeira\n
 -def diferenca_data(data1, data2, meses):
+Calcula a diferença de dias entre as datas informadas\n
 -def soma_dias(data1, dias, meses):
+Soma a quantidade de dias informada à data\n
+-def inserir_data():
+Coleta a data desejada\n
+-def validar_data(data):
+Verifica se a data está no formato DD/MM/AAAA e se a quantidade de dias e meses está coerente com o calendário.\n
 
 '''
 meses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 meses_nome = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
+dias_semana = ['segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado','domingo']
 bissexto = False
 
 def verificar_bissexto(data1):
