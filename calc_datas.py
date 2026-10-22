@@ -133,6 +133,13 @@ def dia_semana(data1):
         cont_semana = diferenca_data(data1,data_segunda_feira,meses)
     else:
         cont_semana = diferenca_data(data_segunda_feira,data1,meses)
+    if (cont_semana==0) or (cont_semana%7==0):
+        nome_dia = dias_semana[0]
+    else:
+        indice = (cont_semana-((cont_semana//7)*7))
+        nome_dia = dias_semana[indice]
+    return nome_dia
+
     
 while True:
     print('-='*31)
@@ -158,8 +165,8 @@ while True:
         dias = int(input('Quantidade de dias a somar: '))
         print(f'{data1[0]}/{data1[1]}/{data1[2]} + {dias} = ',end='') 
         data1, bissexto = soma_dias(data1, dias, meses)
-        print(f'{data1[0]}/{data1[1]}/{data1[2]}')
-        #dia_semana()
+        print(f'{data1[0]}/{data1[1]}/{data1[2]}',end='')
+        print(f' ({(dia_semana(data1))}).')
     elif operacao == 3:
         print('Sair')
         break
