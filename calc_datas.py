@@ -27,6 +27,27 @@ def verificar_bissexto(data1):
         meses[1] = 28
         return meses[1], bissexto
 
+def segunda_data_post(data1,data2):
+    while True:
+        if data1[2] > data2[2]:
+            print('Segunda Data inválida. Escreva uma data posterior à data 1:')
+            data2 = inserir_data()
+            segunda_data_post(data1,data2)
+            break
+        elif (data1[1]>data2[1]) and (data1[2]>=data2[2]):
+            print('Segunda Data inválida. Escreva uma data posterior à data 1:')
+            data2 = inserir_data()
+            segunda_data_post(data1,data2)
+            break
+        elif (data1[0]>data2[0]) and (data1[1]>=data2[1]) and (data1[2]>=data2[2]):
+            print('Segunda Data inválida. Escreva uma data posterior à data 1:')
+            data2 = inserir_data()
+            segunda_data_post(data1,data2)
+            break
+        else:
+            break
+    return data2
+
 def diferenca_data(data1, data2, meses):
     dias = 0
     verificar_bissexto(data1)
@@ -106,6 +127,7 @@ while True:
         print('Data 2:')
         data2 = inserir_data()
         data2 = validar_data(data2)
+        data2 = segunda_data_post(data1,data2)
         print(f'Entre {data1[0]}/{data1[1]}/{data1[2]} e {data2[0]}/{data2[1]}/{data2[2]} = ',end='')
         diferenca = diferenca_data(data1, data2, meses)
         print(f'{diferenca}')
