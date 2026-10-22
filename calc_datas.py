@@ -12,11 +12,19 @@ def verificar_bissexto(data1):
         return meses[1], bissexto
 
 def diferenca_data(data1, data2, meses):
-    while (data1[1]<data2[1]) or (data1[2]<data2[2]):
-        if meses[(data2[1]-1)] > data1[0]:
-            dias = meses[(data2[1])] - data1[0]
-            data[0] += dias
-    dias = data2[0] - data1[0]
+    dias = 0
+    verificar_bissexto(data1)
+    verificar_bissexto(data2)
+    while data1 != data2:
+        data1[0] += 1
+        if data1[0] > meses[((data1[1])-1)]:
+            data1[0] = 1
+            data1[1] += 1
+            if data1[1] > 12:
+                data1[1] = 1
+                data1[2] += 1
+                verificar_bissexto(data1)
+        dias += 1
     return dias
 
 def soma_dias(data1, dias, meses):
@@ -41,12 +49,13 @@ while True:
     while operacao not in (1,2,3):
         operacao = int(input('(1) Calcular quantos dias há entre duas datas\n(2) Somar uma quantidade de dias a uma data\n(3) Sair\n>'))
     if operacao == 1:
-        data1 = int(input('Escreva a primeira data (DD/MM/AAAA): ').strip().split('/'))
+        data1 = input('Escreva a primeira data (DD/MM/AAAA): ').strip().split('/')
         data1 = [int(item) for item in data1]
-        data2 = int(input('Escreva a segunda data (DD/MM/AAAA): ').strip().split('/'))
+        data2 = input('Escreva a segunda data (DD/MM/AAAA): ').strip().split('/')
         data2 = [int(item) for item in data2]
-        #diferenca = data2 - data1
-        print(f'{data1} + {data2} = diferenca')
+        print(f'Entre {data1[0]}/{data1[1]}/{data1[2]} e {data2[0]}/{data2[1]}/{data2[2]} = ',end='')
+        diferenca = diferenca_data(data1, data2, meses)
+        print(f'{diferenca}')
     elif operacao == 2:
         data1 = input('Escreva a data (DD/MM/AAAA): ').strip().split('/')
         data1 = [int(item) for item in data1]
