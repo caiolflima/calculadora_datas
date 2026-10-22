@@ -26,6 +26,7 @@ meses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 meses_nome = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
 dias_semana = ['segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado','domingo']
 bissexto = False
+data_segunda_feira = [12,10,2026]
 
 def verificar_bissexto(data1):
     if ((data1[2]%4==0) and not (data1[2]%100==0)) or (data1[2]%400==0):
@@ -123,6 +124,16 @@ def validar_data(data):
             data = inserir_data()
     return data
 
+def dia_semana(data1):
+    if data_segunda_feira[2] > data1[2]:
+        cont_semana = diferenca_data(data1,data_segunda_feira,meses)
+    elif (data_segunda_feira[1] > data1[1]) and (data_segunda_feira[2] >= data1[2]):
+        cont_semana = diferenca_data(data1,data_segunda_feira,meses)
+    elif (data_segunda_feira[0] > data1[0]) and (data_segunda_feira[1] >= data1[1]) and (data_segunda_feira[2] >= data1[2]):
+        cont_semana = diferenca_data(data1,data_segunda_feira,meses)
+    else:
+        cont_semana = diferenca_data(data_segunda_feira,data1,meses)
+    
 while True:
     print('-='*31)
     print(f'{'Calculadora de Datas':^61}')
@@ -148,6 +159,7 @@ while True:
         print(f'{data1[0]}/{data1[1]}/{data1[2]} + {dias} = ',end='') 
         data1, bissexto = soma_dias(data1, dias, meses)
         print(f'{data1[0]}/{data1[1]}/{data1[2]}')
+        #dia_semana()
     elif operacao == 3:
         print('Sair')
         break
