@@ -125,24 +125,23 @@ def validar_data(data):
             data = inserir_data()
     return data
 
-def dia_semana(data_final, dias):
+def dia_semana(data_final):
     if data_segunda_feira[2] > data_final[2]:
         maior_data = data_segunda_feira
-        cont_semana = dias
     elif data_segunda_feira[1] > data_final[1]:
         maior_data = data_segunda_feira
-        cont_semana = dias
     elif data_segunda_feira[0] > data_final[0]:
         maior_data = data_segunda_feira
-        cont_semana = dias
     else:
-        cont_semana = diferenca_data(data_segunda_feira,data_final,meses)
         maior_data = data_final
+
     if maior_data == data_segunda_feira:
-        indice = 6-(cont_semana-((cont_semana//7)*7))
+        cont_semana = diferenca_data(data_final,data_segunda_feira,meses)
+        indice = (cont_semana-((cont_semana//7)*7))+1
         nome_dia = dias_semana[indice]
         print('CASO1')
     else:
+        cont_semana = diferenca_data(data_segunda_feira,data_final,meses)
         indice = (cont_semana-((cont_semana//7)*7))
         nome_dia = dias_semana[indice]
         print('caso2')
@@ -173,7 +172,7 @@ while True:
         print(f'{data1[0]}/{data1[1]}/{data1[2]} + {dias} = ',end='') 
         data_final, bissexto = soma_dias(data1, dias, meses)
         print(f'{data_final[0]}/{data_final[1]}/{data_final[2]}',end='')
-        print(f' ({(dia_semana(data_final,dias))}).')
+        print(f' ({(dia_semana(data_final))}).')
     elif operacao == 3:
         print('Sair')
         break
