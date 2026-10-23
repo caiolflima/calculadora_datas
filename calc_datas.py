@@ -128,23 +128,29 @@ def validar_data(data):
 def dia_semana(data_final):
     if data_segunda_feira[2] > data_final[2]:
         maior_data = data_segunda_feira
-    elif data_segunda_feira[1] > data_final[1]:
+    elif (data_segunda_feira[1] > data_final[1]) and (data_segunda_feira[2] >= data_final[2]):
         maior_data = data_segunda_feira
-    elif data_segunda_feira[0] > data_final[0]:
+    elif (data_segunda_feira[0] > data_final[0]) and (data_segunda_feira[1] >= data_final[1]) and (data_segunda_feira[2] >= data_final[2]):
         maior_data = data_segunda_feira
     else:
         maior_data = data_final
-
+    indice = 0
     if maior_data == data_segunda_feira:
         cont_semana = diferenca_data(data_final,data_segunda_feira,meses)
-        indice = (cont_semana-((cont_semana//7)*7))+1
+        for c in range(cont_semana,0,-1):
+            if indice==0:
+                indice=6
+            else:
+                indice -= 1
         nome_dia = dias_semana[indice]
-        print('CASO1')
     else:
         cont_semana = diferenca_data(data_segunda_feira,data_final,meses)
-        indice = (cont_semana-((cont_semana//7)*7))
+        for c in range(cont_semana,0,-1):
+            if indice==6:
+                indice=0
+            else:
+                indice += 1
         nome_dia = dias_semana[indice]
-        print('caso2')
     return nome_dia
 
 while True:
