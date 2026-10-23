@@ -125,20 +125,27 @@ def validar_data(data):
             data = inserir_data()
     return data
 
-def dia_semana(data1):
-    if data_segunda_feira[2] > data1[2]:
-        cont_semana = diferenca_data(data1,data_segunda_feira,meses)
-    elif (data_segunda_feira[1] > data1[1]) and (data_segunda_feira[2] >= data1[2]):
-        cont_semana = diferenca_data(data1,data_segunda_feira,meses)
-    elif (data_segunda_feira[0] > data1[0]) and (data_segunda_feira[1] >= data1[1]) and (data_segunda_feira[2] >= data1[2]):
-        cont_semana = diferenca_data(data1,data_segunda_feira,meses)
+def dia_semana(data_final, dias):
+    if data_segunda_feira[2] > data_final[2]:
+        maior_data = data_segunda_feira
+        cont_semana = dias
+    elif data_segunda_feira[1] > data_final[1]:
+        maior_data = data_segunda_feira
+        cont_semana = dias
+    elif data_segunda_feira[0] > data_final[0]:
+        maior_data = data_segunda_feira
+        cont_semana = dias
     else:
-        cont_semana = diferenca_data(data_segunda_feira,data1,meses)
-    if (cont_semana==0) or (cont_semana%7==0):
-        nome_dia = dias_semana[0]
+        cont_semana = diferenca_data(data_segunda_feira,data_final,meses)
+        maior_data = data_final
+    if maior_data == data_segunda_feira:
+        indice = 6-(cont_semana-((cont_semana//7)*7))
+        nome_dia = dias_semana[indice]
+        print('CASO1')
     else:
         indice = (cont_semana-((cont_semana//7)*7))
         nome_dia = dias_semana[indice]
+        print('caso2')
     return nome_dia
 
 while True:
@@ -164,9 +171,9 @@ while True:
         data1 = [int(item) for item in data1]
         dias = int(input('Quantidade de dias a somar: '))
         print(f'{data1[0]}/{data1[1]}/{data1[2]} + {dias} = ',end='') 
-        data1, bissexto = soma_dias(data1, dias, meses)
-        print(f'{data1[0]}/{data1[1]}/{data1[2]}',end='')
-        print(f' ({(dia_semana(data1))}).')
+        data_final, bissexto = soma_dias(data1, dias, meses)
+        print(f'{data_final[0]}/{data_final[1]}/{data_final[2]}',end='')
+        print(f' ({(dia_semana(data_final,dias))}).')
     elif operacao == 3:
         print('Sair')
         break
